@@ -1,3 +1,4 @@
+require 'active_record_stats'
 require 'active_support/notifications'
 require 'action_dispatch/http/parameters'
 

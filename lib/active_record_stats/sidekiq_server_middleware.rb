@@ -1,3 +1,5 @@
+require 'active_record_stats'
+
 module ActiveRecordStats
   class SidekiqServerMiddleware
     def call(worker, job, queue)
