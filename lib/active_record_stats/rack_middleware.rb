@@ -6,8 +6,8 @@ module ActiveRecordStats
   class RackMiddleware
     # The location in the Rack `env` where ActionDispatch stores its
     # `parameters` value. This _may_ change across Rails versions, but
-    # hopefully the constant stays put.
-    ENV_KEY = ActionDispatch::Http::Parameters::PARAMETERS_KEY
+    # I am not aware of any more reliable means of retrieving it.
+    ENV_KEY = 'action_dispatch.request.parameters'.freeze
 
     def initialize(app)
       @app = app
