@@ -1,6 +1,8 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
 require 'active_record_stats'
+require 'statsd/instrument/matchers'
+require_relative 'shared_examples'
 
 RSpec.configure do |config|
   config.filter_run :focus
@@ -16,6 +18,8 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.syntax = :expect
   end
+
+  config.include StatsD::Instrument::Matchers
 end
 
 # Set up a world in which ActiveRecord more or less works.
