@@ -39,4 +39,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'actionpack', '~> 4.0'
   spec.add_development_dependency 'resque', '~> 1.0'
   spec.add_development_dependency 'sidekiq', '> 3', '< 5'
+  spec.add_development_dependency 'rack-test', '~> 0.6'
 end

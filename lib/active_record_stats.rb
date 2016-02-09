@@ -1,5 +1,6 @@
-require "active_record_stats/version"
-require "active_record"
+require 'active_record_stats/version'
+require 'active_record'
+require 'statsd-instrument'
 
 module ActiveRecordStats
   def self.statement_type(sql)
