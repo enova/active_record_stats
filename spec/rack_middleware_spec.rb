@@ -1,8 +1,8 @@
-require 'active_record_stats/middleware'
+require 'active_record_stats/rack_middleware'
 require 'statsd/instrument/matchers'
 require 'rack/test'
 
-RSpec.describe ActiveRecordStats::Middleware do
+RSpec.describe ActiveRecordStats::RackMiddleware do
   include Rack::Test::Methods
   include StatsD::Instrument::Matchers
 
@@ -56,7 +56,7 @@ RSpec.describe ActiveRecordStats::Middleware do
   end
 
   let(:app) do
-    ActiveRecordStats::Middleware.new(handler)
+    ActiveRecordStats::RackMiddleware.new(handler)
   end
 
   %w[SELECT INSERT UPDATE DELETE BEGIN COMMIT].each do |type|

@@ -2,7 +2,7 @@ require 'active_support/notifications'
 require 'action_dispatch/http/parameters'
 
 module ActiveRecordStats
-  class Middleware
+  class RackMiddleware
     # The location in the Rack `env` where ActionDispatch stores its
     # `parameters` value. This _may_ change across Rails versions, but
     # hopefully the constant stays put.

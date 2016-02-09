@@ -20,11 +20,11 @@ For Rails web request instrumentation, add the following to your
 `config/application.rb`:
 
 ~~~ruby
-require 'active_record_stats/middleware'
+require 'active_record_stats/rack_middleware'
 
 module YourApp
   class Application < Rails::Application
-    config.middleware.use 'ActiveRecordStats::Middleware'
+    config.middleware.use 'ActiveRecordStats::RackMiddleware'
   end
 end
 ~~~
@@ -32,20 +32,22 @@ end
 For Resque job instrumentation, `extend` your job classes like so:
 
 ~~~ruby
-require 'active_record_stats/resque'
+require 'active_record_stats/resque_plugin'
 
 class SomeJob
-  extend ActiveRecordStats::Resque
+  extend ActiveRecordStats::ResquePlugin
 end
 ~~~
 
-For Sidekiq instrumentation, ....
+For Sidekiq instrumentation, enable the server middleware:
 
 ~~~ruby
-require 'active_record_stats/sidekiq'
+require 'active_record_stats/sidekiq_server_middleware'
 
-class SomeJob
-  include ActiveRecordStats::Sidekiq
+Sidekiq.configure_server do |config|
+  config.server_middleware do |chain|
+    chain.add ActiveRecordStats::SidekiqServerMiddleware
+  end
 end
 ~~~
 
