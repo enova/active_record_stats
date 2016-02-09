@@ -53,12 +53,24 @@ end
 
 Metrics will be with names in the following formats:
 
-1. Gauge db.web._controller_._action_._sql-verb_: the number of `sql-verb` queries
+1. Gauge db.web._controller_._action_._statement_: the number of `statement` queries
    performed for a given controller action.
 2. Timer db.web._controller_._action_.runtime: the total `db_runtime` cost of
-   a given controller action.
-3. Gauge db.job._class_._sql-verb_: the number of `sql-verb` queries performed
+   a given controller action, in milliseconds.
+3. Gauge db.job._class_._statement_: the number of `statement` queries performed
    for a given job.
+
+As Graphite metric names may not contain a `/` character, they are replaced with
+two underscores (`__`). For sanity's sake, the same is done for `::` delimiters.
+
+Example metrics that might be emitted:
+
+* `db.web.v1__widgets.update.UPDATE:2|g`: two `UPDATE` statements were issued
+   when processing `V1::WidgetsController#update`.
+* `db.web.posts.create.runtime:123|g`: Rails reported the total time spent
+   in ActiveRecord for the `PostsController#create` action as 123 ms.
+* `db.job.cache__prime.SELECT:10|g`: ten `SELECT` statements were issued when
+   processing the `Cache::Prime` job.
 
 ## License
 
