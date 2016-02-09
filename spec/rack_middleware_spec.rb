@@ -23,33 +23,7 @@ RSpec.describe ActiveRecordStats::RackMiddleware do
         env[described_class::ENV_KEY] = {}
       end
 
-      ActiveRecord::Base.transaction do # BEGIN
-        # SELECT ...
-        Widget.first
-
-        # INSERT ...
-        Widget.create(name: 'foo')
-
-        # UPDATE ...
-        Widget.update_all(name: 'bar')
-
-        # SELECT + DELETE ...
-        Widget.first.destroy
-
-        # Manual query with leading comment and whitespace
-        ActiveRecord::Base.connection.execute <<-SQL
-
-        -- foo!
-          SELECT * FROM widgets;
-
-        SQL
-
-        # CTEs are emitted as `WITH` queries, because we can't afford
-        # to do real SQL parsing
-        ActiveRecord::Base.connection.execute <<-SQL
-        WITH cte AS (SELECT 'foo') SELECT * FROM cte
-        SQL
-      end # COMMIT
+      IssueSomeQueries.call
 
       [200, {}, ['OK']]
     end
