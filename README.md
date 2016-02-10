@@ -1,4 +1,4 @@
-# ActiveRecordStats
+# ActiveRecordStats [![Build Status](https://travis-ci.org/enova/active_record_stats.svg?branch=master)](https://travis-ci.org/enova/active_record_stats)
 
 Provides Rails, Resque, and Sidekiq integrations for emitting metrics
 about ActiveRecord usage to StatsD using Shopify's [statsd-instrument][].
