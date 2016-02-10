@@ -8,7 +8,7 @@ before_install:
   - gem install bundler -v 1.11.2
 
 before_script:
-  -bin/setup
+  - bin/setup
 
 deploy:
   provider: rubygems
