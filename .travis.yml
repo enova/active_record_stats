@@ -7,3 +7,12 @@ rvm:
 before_install:
   - gem install bundler -v 1.11.2
   - bin/setup
+
+deploy:
+  provider: rubygems
+  api_key:
+    secure: hP/f6DldhG0RrlDxnPNHeOsg2JaIdR2sw8D1TVQeSReGgaoHM55k2BJnCzMglqdGd9TtyBpN+O0B10oSZ0HylBhm6+nYlkxkLvFlCoKz9VjGJPZeW32qRcTnfKw+yl24M1BTt/quZH+e0mjpAcj3rXxuA0aR74bHrBUabhqcvi5YRosKNKRmqOb4gmj+pLSNs9p8ftK5onIwx3vmKhuuK96Ba+xpF1KPAet9BejzaOeqoMb0p7o6fw029r95TshiXex8J/yLegn61w28PG3dC8HDDV9te4xf7151T3a6PQKnXgR9o3oz2SGoK3OH3qzyR5JB/0Fszd1P89wVing5eEOq6sM+++pX7+sslS2vKSTQfbRGIe2o47L0HBlYC8/m3GTwTDWQ9BRd8vItDUC4GNI5fEj74CoOLQ0+QBsVdotGJq3kl/EN96L6ODNhMEKeAr6AVngwP74XK30qW3XH+Cni3Dnz1CUi3Tpso7xjQC1AEJd7YP+yVdqduwJpiIu5BqFGizBdvyp5+gGFBftxRaWbW0lMEs5YJ5yZWNejO5q0jZCGgkEXH7UPo7G0bpMIinJ7o9SEbICBT/1Gm6nmV04krP+su+qAveIyMcZcmyyjn1OXQ5Hehkf6FuHmFJGcv3Jd+a0hjgjLgSBVlBzIrYADBDGX4W/FZWJBNv75OtE=
+  gem: active_record_stats
+  on:
+    tags: true
+    repo: enova/active_record_stats
