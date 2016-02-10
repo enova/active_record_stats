@@ -11,16 +11,8 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Emit ActiveRecord query counts and runtime to StatsD}
   spec.description   = %q{ActiveRecord instrumentation for Rails, Resque and Sidekiq}
-  spec.homepage      = "https://git.enova.com/gems/active_record_stats"
+  spec.homepage      = "https://github.com/enova/active_record_stats"
   spec.license       = "MIT"
-
-  # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
-  # delete this section to allow pushing this gem to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
-  end
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
