@@ -74,6 +74,13 @@ Example metrics that might be emitted:
 * `db.job.cache__prime.SELECT:10|g`: ten `SELECT` statements were issued when
    processing the `Cache::Prime` job.
 
+## Caveats
+
+This library does not actually parse SQL queries; it uses a [very naive string munging
+tactic](https://github.com/enova/active_record_stats/blob/master/spec/statement_type_spec.rb)
+to identify the statement type involved. Because of this, some of the metrics are a
+bit nonsensical, such as `WITH` statements being reported when a query begins with a CTE.
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
