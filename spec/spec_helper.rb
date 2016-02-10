@@ -1,5 +1,7 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
+require 'simplecov'
+
 require 'active_record_stats'
 require 'statsd/instrument/matchers'
 require_relative 'shared_examples'
