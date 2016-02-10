@@ -37,7 +37,7 @@ module ActiveRecordStats
 
     ensure
       request_params = env[ENV_KEY]
-      if controller = request_params['controller']
+      if request_params && controller = request_params['controller']
         controller = controller.gsub('/', '__')
         action = request_params['action']
         emit(controller, action, db_time, totals)

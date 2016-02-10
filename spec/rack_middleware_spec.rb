@@ -9,13 +9,17 @@ RSpec.describe ActiveRecordStats::RackMiddleware do
 
   let(:handler) do
     lambda do |env|
-      if env['PATH_INFO'] == '/'
+      case env['PATH_INFO']
+      when '/'
         # Pretend like we're in a request that Rails actually routed:
         env[described_class::ENV_KEY] = {
           'controller' => controller_name,
           'action' => action_name
         }
-      else
+      when '/not-rails'
+        env[described_class::ENV_KEY]= nil
+
+      when '/no-action'
         # Pretend that ActionDispatch failed to populate `controller`
         # and `action` for whatever reason:
         env[described_class::ENV_KEY] = {}
@@ -37,10 +41,16 @@ RSpec.describe ActiveRecordStats::RackMiddleware do
 
   include_examples 'emits gauges', 'db.web.v1__query_issuer.index'
 
-  it 'ignores request without `controller` and `action` available' do
+  it 'ignores requests without the action dispatch params key in env' do
     expect(StatsD).not_to receive(:gauge)
     expect(StatsD).not_to receive(:measure)
-    get '/avoid-rails'
+    get '/not-rails'
+  end
+
+  it 'ignores requests without `controller` and `action` available' do
+    expect(StatsD).not_to receive(:gauge)
+    expect(StatsD).not_to receive(:measure)
+    get '/no-action'
   end
 
   # The `process_action.action_controller` notification isn't actually being
