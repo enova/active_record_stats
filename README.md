@@ -1,4 +1,8 @@
-# ActiveRecordStats [![Build Status](https://travis-ci.org/enova/active_record_stats.svg?branch=master)](https://travis-ci.org/enova/active_record_stats) [![Coverage Status](https://coveralls.io/repos/github/enova/active_record_stats/badge.svg?branch=master)](https://coveralls.io/github/enova/active_record_stats?branch=master)
+# ActiveRecordStats
+
+[![Gem Version](https://badge.fury.io/rb/active_record_stats.svg)](https://rubygems.org/gems/active_record_stats)
+[![Build Status](https://travis-ci.org/enova/active_record_stats.svg?branch=master)](https://travis-ci.org/enova/active_record_stats)
+[![Coverage Status](https://coveralls.io/repos/github/enova/active_record_stats/badge.svg?branch=master)](https://coveralls.io/github/enova/active_record_stats?branch=master)
 
 Provides Rails, Resque, and Sidekiq integrations for emitting metrics
 about ActiveRecord usage to StatsD using Shopify's [statsd-instrument][].
