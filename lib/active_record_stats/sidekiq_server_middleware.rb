@@ -16,8 +16,8 @@ module ActiveRecordStats
       yield
 
     ensure
-      emit(worker.class.to_s, totals)
       ActiveSupport::Notifications.unsubscribe(sub)
+      emit(worker.class.to_s, totals)
     end
 
     private

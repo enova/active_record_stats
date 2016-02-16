@@ -36,15 +36,15 @@ module ActiveRecordStats
       @app.call(env)
 
     ensure
+      subs.each do |sub|
+        ActiveSupport::Notifications.unsubscribe(sub)
+      end
+
       request_params = env[ENV_KEY]
       if request_params && controller = request_params['controller']
         controller = controller.gsub('/', '__')
         action = request_params['action']
         emit(controller, action, db_time, totals)
-      end
-
-      subs.each do |sub|
-        ActiveSupport::Notifications.unsubscribe(sub)
       end
     end
 
