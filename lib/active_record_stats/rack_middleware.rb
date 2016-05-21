@@ -14,7 +14,7 @@ module ActiveRecordStats
     end
 
     def call(env)
-      totals  = {}
+      totals  = ActiveRecordStats.statement_hash
       db_time = 0
 
       gather_sql = ->(_name, _started_at, _finished_at, _unique_id, payload) {
