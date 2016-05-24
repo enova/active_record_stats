@@ -44,7 +44,7 @@ module ActiveRecordStats
       if request_params && controller = request_params['controller']
         controller = controller.gsub('/', '__')
         action = request_params['action']
-        emit(controller, action, db_time, totals)
+        emit(controller, action, db_time, totals.dup)
       end
     end
 

@@ -17,7 +17,7 @@ module ActiveRecordStats
 
     ensure
       ActiveSupport::Notifications.unsubscribe(sub)
-      emit(worker.class.to_s, totals)
+      emit(worker.class.to_s, totals.dup)
     end
 
     private
