@@ -14,7 +14,7 @@ module ActiveRecordStats
     end
 
     def call(env)
-      totals  = ActiveRecordStats.statement_hash
+      totals  = {}
       db_time = 0
 
       gather_sql = ->(_name, _started_at, _finished_at, _unique_id, payload) {
@@ -44,7 +44,7 @@ module ActiveRecordStats
       if request_params && controller = request_params['controller']
         controller = controller.gsub('/', '__')
         action = request_params['action']
-        emit(controller, action, db_time, totals)
+        emit(controller, action, db_time, totals.dup)
       end
     end
 

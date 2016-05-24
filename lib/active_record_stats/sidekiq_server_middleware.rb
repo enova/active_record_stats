@@ -3,8 +3,8 @@ require 'active_record_stats'
 module ActiveRecordStats
   class SidekiqServerMiddleware
     def call(worker, job, queue)
-      totals = ActiveRecordStats.statement_hash
-      
+      totals = {}
+
       gather_sql = ->(_name, _started_at, _finished_at, _unique_id, payload) {
         return if payload[:name] == 'SCHEMA' || payload[:sql].blank?
         return unless type = ActiveRecordStats.statement_type(payload[:sql])
@@ -17,7 +17,7 @@ module ActiveRecordStats
 
     ensure
       ActiveSupport::Notifications.unsubscribe(sub)
-      emit(worker.class.to_s, totals)
+      emit(worker.class.to_s, totals.dup)
     end
 
     private

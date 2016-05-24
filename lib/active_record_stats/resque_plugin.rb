@@ -3,7 +3,7 @@ require 'active_record_stats'
 module ActiveRecordStats
   module ResquePlugin
     def around_perform_active_record_stats(*args, &block)
-      totals = ActiveRecordStats.statement_hash
+      totals = {}
 
       gather_sql = ->(_name, _started_at, _finished_at, _unique_id, payload) {
         return if payload[:name] == 'SCHEMA' || payload[:sql].blank?
@@ -17,7 +17,7 @@ module ActiveRecordStats
 
     ensure
       ActiveSupport::Notifications.unsubscribe(sub)
-      emit_active_record_stats(name, totals)
+      emit_active_record_stats(name, totals.dup)
     end
 
     private
