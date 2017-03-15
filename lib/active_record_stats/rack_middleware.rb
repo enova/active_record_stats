@@ -26,7 +26,7 @@ module ActiveRecordStats
       }
 
       gather_runtime = ->(_name, _started_at, _finished_at, _unique_id, payload) {
-        db_time = payload[:db_runtime]
+        db_time = payload.fetch(:db_runtime) { 0 }
       }
 
       subs = [
