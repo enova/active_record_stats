@@ -87,6 +87,6 @@ bit nonsensical, such as `WITH` statements being reported when a query begins wi
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+The gem is available as open source under the terms of the [MIT License](LICENSE.txt).
 
 [statsd-instrument]: https://github.com/Shopify/statsd-instrument
